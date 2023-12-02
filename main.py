@@ -3,10 +3,12 @@ from typing import Union
 from pydantic import BaseModel
 from path_parameters import path
 from enum_parameters import enumParam
+from query_parameters import query_params
 
 app = FastAPI()
 app.include_router(path.router)
 app.include_router(enumParam.router)
+app.include_router(query_params.router)
 
 class Product(BaseModel):
     name: str
