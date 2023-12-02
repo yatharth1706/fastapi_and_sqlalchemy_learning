@@ -2,9 +2,11 @@ from fastapi import FastAPI
 from typing import Union
 from pydantic import BaseModel
 from path_parameters import path
+from enum_parameters import enumParam
 
 app = FastAPI()
 app.include_router(path.router)
+app.include_router(enumParam.router)
 
 class Product(BaseModel):
     name: str
