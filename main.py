@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from typing import Union
 from pydantic import BaseModel
+from path_parameters import path
 
 app = FastAPI()
+app.include_router(path.router)
 
 class Product(BaseModel):
     name: str
