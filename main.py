@@ -4,11 +4,13 @@ from pydantic import BaseModel
 from path_parameters import path
 from enum_parameters import enumParam
 from query_parameters import query_params
+from body import body
 
 app = FastAPI()
 app.include_router(path.router)
 app.include_router(enumParam.router)
 app.include_router(query_params.router)
+app.include_router(body.router)
 
 class Product(BaseModel):
     name: str
