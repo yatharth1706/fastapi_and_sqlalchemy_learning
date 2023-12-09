@@ -5,27 +5,15 @@ from path_parameters import path
 from enum_parameters import enumParam
 from query_parameters import query_params
 from body import body
+from body_with_parameters import with_params
 
 app = FastAPI()
 app.include_router(path.router)
 app.include_router(enumParam.router)
 app.include_router(query_params.router)
 app.include_router(body.router)
-
-class Product(BaseModel):
-    name: str
-    price: float
-    is_offer: Union[bool, None] = None
-
+app.include_router(with_params.router, prefix="/api")
 
 @app.get("/")
 def test_api():
     return {"message": "Hello world"}
-
-@app.get("/product/{product_name}")
-def get_product_name(product_name: str, q = None):
-    return {"product": product_name, "q": q}
-
-@app.put("/product/{product_id}")
-def update_item(product_id: int, product: Product):
-    return {"item_name": product.name, "item_id": product_id}
