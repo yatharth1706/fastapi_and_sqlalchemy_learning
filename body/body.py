@@ -20,3 +20,11 @@ async def update_item_for_user(user_id: str, item: Item, user: User, importance:
         "user": user,
         "importance": importance
     }
+
+
+# Next example is to explicitly allow fastapi to take the body parameter inside a key
+@router.put("/embeded_body_item")
+def update_item(item: Annotated[Item, Body(embed=True)]):
+    return {
+        "item": item
+    }
